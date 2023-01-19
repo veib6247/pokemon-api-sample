@@ -84,5 +84,16 @@
         </div>
       </div>
     </div>
+
+    <div class="text-center">
+      <p class="text-sm">
+        <a
+          class="link"
+          href="https://github.com/veib6247/fetching-data-samples"
+          target="_blank">
+          Github
+        </a>
+      </p>
+    </div>
   </div>
 </template>
