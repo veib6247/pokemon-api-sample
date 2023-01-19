@@ -19,7 +19,7 @@
 
     <!-- display pokemon info -->
     <div class="card bg-base-300 shadow-xl" v-if="responseData">
-      <div class="card-body">
+      <div class="card-body items-center text-center">
         <h2 class="card-title">{{ responseData.name.toUpperCase() }}</h2>
 
         <div class="avatar">
@@ -36,6 +36,11 @@
         <div class="prose">
           <h4>Weight</h4>
           {{ responseData.weight }}
+        </div>
+
+        <div class="prose">
+          <h4>Base Experience</h4>
+          {{ responseData.base_experience }}
         </div>
       </div>
     </div>
