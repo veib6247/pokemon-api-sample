@@ -1,14 +1,12 @@
 <template>
   <div class="container mx-auto my-10">
-    <div class="flex space-x-3">
-      <bin />
-
+    <div class="flex justify-center">
       <pokemon />
     </div>
   </div>
 </template>
 
 <script setup>
-  import bin from './components/bin.vue'
+  // import bin from './components/bin.vue'
   import pokemon from './components/pokemon.vue'
 </script>
