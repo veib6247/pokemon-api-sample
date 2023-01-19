@@ -40,50 +40,87 @@
 
 <template>
   <div class="flex flex-col gap-3 w-96">
-    <!-- input for pokemon name -->
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Pokemon Name</span>
-      </label>
-      <input
-        type="text"
-        placeholder="e.g. pikachu"
-        class="input input-bordered w-full"
-        :class="{ 'input-error': isError }"
-        v-model="pokemon" />
+    <div class="prose text-center mb-9">
+      <h1 class="text-accent">Pokémon API</h1>
+      <p>Sample Implementation</p>
     </div>
 
-    <button class="btn" :class="{ loading: isLoading }" @click="getData">
-      Get Data
+    <!-- input for pokemon name -->
+    <div class="form-control">
+      <input
+        type="text"
+        placeholder="Pokemon Name or ID"
+        class="input input-bordered input-primary w-full text-center placeholder-gray-700"
+        :class="{ 'input-error': isError }"
+        @keyup.enter="getData"
+        v-model="pokemon"
+        spellcheck="false" />
+    </div>
+
+    <button
+      class="btn btn-primary gap-2"
+      :class="{ loading: isLoading }"
+      @click="getData">
+      <svg
+        v-if="!isLoading"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+      </svg>
+      Search
     </button>
 
     <!-- display pokemon info -->
-    <div class="card bg-base-300 shadow-xl" v-if="responseData">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">{{ responseData.name.toUpperCase() }}</h2>
+    <Transition>
+      <div class="card bg-base-300 shadow-xl mt-3" v-if="responseData">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title text-secondary">
+            {{ responseData.name.toUpperCase() }}
+          </h2>
 
-        <div class="avatar">
-          <div class="w-24 rounded-full">
-            <img :src="responseData.sprites.front_default" />
+          <div class="avatar">
+            <div class="w-24 rounded-full">
+              <img :src="responseData.sprites.front_default" />
+            </div>
+          </div>
+
+          <div class="prose">
+            <h4 class="text-secondary">ID</h4>
+            <span class="font-mono">
+              {{ responseData.id }}
+            </span>
+          </div>
+
+          <div class="prose">
+            <h4 class="text-secondary">Height</h4>
+            <span class="font-mono">
+              {{ responseData.height }}
+            </span>
+          </div>
+
+          <div class="prose">
+            <h4 class="text-secondary">Weight</h4>
+            <span class="font-mono">
+              {{ responseData.weight }}
+            </span>
+          </div>
+
+          <div class="prose">
+            <h4 class="text-secondary">Base Experience</h4>
+            <span class="font-mono">
+              {{ responseData.base_experience }}
+            </span>
           </div>
         </div>
-
-        <div class="prose">
-          <h4>Height</h4>
-          {{ responseData.height }}
-        </div>
-
-        <div class="prose">
-          <h4>Weight</h4>
-          {{ responseData.weight }}
-        </div>
-
-        <div class="prose">
-          <h4>Base Experience</h4>
-          {{ responseData.base_experience }}
-        </div>
       </div>
-    </div>
+    </Transition>
 
     <div class="text-center">
       <p class="text-sm">
@@ -97,3 +134,15 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+</style>
