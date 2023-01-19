@@ -31,6 +31,7 @@
         try {
           responseData.value = await response.json()
         } catch (e) {
+          isError.value = true
           console.error(`API error: "${await responseClone.text()}"`)
         }
         //
