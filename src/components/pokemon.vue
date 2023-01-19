@@ -31,7 +31,9 @@
         <div class="prose">
           <h4>Height</h4>
           {{ responseData.height }}
+        </div>
 
+        <div class="prose">
           <h4>Weight</h4>
           {{ responseData.weight }}
         </div>
