@@ -1,3 +1,43 @@
+<script setup>
+  import { ref } from 'vue'
+
+  const pokemon = ref('')
+  const isLoading = ref(false)
+  const isError = ref(false)
+  const responseData = ref(null)
+
+  /**
+   *
+   */
+  const getData = async () => {
+    // validate input
+    if (pokemon.value == '') {
+      isError.value = true
+      responseData.value = null
+    } else {
+      isLoading.value = true
+      isError.value = false
+      responseData.value = null
+
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemon.value}`
+        )
+
+        responseData.value = await response.json()
+        //
+      } catch (error) {
+        //
+        isError.value = true
+        console.error(error)
+      } finally {
+        //
+        isLoading.value = false
+      }
+    }
+  }
+</script>
+
 <template>
   <div class="flex flex-col gap-3 w-96">
     <!-- input for pokemon name -->
@@ -46,43 +86,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  import { ref } from 'vue'
-
-  const pokemon = ref('')
-  const isLoading = ref(false)
-  const isError = ref(false)
-  const responseData = ref(null)
-
-  /**
-   *
-   */
-  const getData = async () => {
-    // validate input
-    if (pokemon.value == '') {
-      isError.value = true
-      responseData.value = null
-    } else {
-      isLoading.value = true
-      isError.value = false
-      responseData.value = null
-
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.value}`
-        )
-
-        responseData.value = await response.json()
-        //
-      } catch (error) {
-        //
-        isError.value = true
-        console.error(error)
-      } finally {
-        //
-        isLoading.value = false
-      }
-    }
-  }
-</script>
