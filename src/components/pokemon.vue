@@ -24,7 +24,15 @@
           `https://pokeapi.co/api/v2/pokemon/${pokemon.value}`
         )
 
-        responseData.value = await response.json()
+        // pokeapi returns a "Not Found" string if a resource is not found,
+        // we'll parse the clone in case it happens
+        const responseClone = response.clone()
+
+        try {
+          responseData.value = await response.json()
+        } catch (e) {
+          console.error(`API error: "${await responseClone.text()}"`)
+        }
         //
       } catch (error) {
         //
