@@ -39,8 +39,8 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-3 w-96">
-    <div class="prose text-center mb-9">
+  <div class="flex w-96 flex-col gap-3">
+    <div class="prose mb-9 text-center">
       <h1 class="text-accent">Pokémon API</h1>
       <p>Sample Implementation</p>
     </div>
@@ -50,7 +50,7 @@
       <input
         type="text"
         placeholder="Pokemon Name or ID"
-        class="input input-bordered input-primary w-full text-center placeholder-gray-700"
+        class="input-bordered input-primary input w-full text-center placeholder-gray-700"
         :class="{ 'input-error': isError }"
         @keyup.enter="getData"
         v-model="pokemon"
@@ -58,7 +58,7 @@
     </div>
 
     <button
-      class="btn btn-primary gap-2"
+      class="btn-primary btn gap-2"
       :class="{ loading: isLoading }"
       @click="getData">
       <svg
@@ -68,7 +68,7 @@
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-6 h-6">
+        class="h-6 w-6">
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -79,7 +79,7 @@
 
     <!-- display pokemon info -->
     <Transition>
-      <div class="card bg-base-300 shadow-xl mt-3" v-if="responseData">
+      <div class="card mt-3 bg-base-300 shadow-xl" v-if="responseData">
         <div class="card-body items-center text-center">
           <h2 class="card-title text-secondary">
             {{ responseData.name.toUpperCase() }}
