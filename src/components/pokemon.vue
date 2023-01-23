@@ -131,7 +131,7 @@
       </div>
     </Transition>
 
-    <div class="text-center">
+    <!-- <div class="text-center">
       <p class="text-sm">
         <a
           class="link"
@@ -140,7 +140,7 @@
           Github
         </a>
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 
