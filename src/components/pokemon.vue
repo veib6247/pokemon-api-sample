@@ -19,9 +19,11 @@
       isError.value = false
       responseData.value = null
 
+      const stringSlug = pokemon.value.toLowerCase()
+
       try {
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.value}`
+          `https://pokeapi.co/api/v2/pokemon/${stringSlug}`
         )
 
         // pokeapi returns a "Not Found" string if a resource is not found,
